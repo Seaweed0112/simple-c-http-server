@@ -134,6 +134,9 @@ int main(int argc, char **argv) {
             /* gethostbyaddr: determine who sent the message */
             hostp = gethostbyaddr((const char *)&clientaddr.sin_addr.s_addr,
                                   sizeof(clientaddr.sin_addr.s_addr), AF_INET);
+            char client_ip[clientlen];
+            printf("client address %s \n",
+                   inet_ntop(AF_INET, &(clientaddr.sin_addr), client_ip, clientlen));
             if (hostp == NULL)
                 error("ERROR on gethostbyaddr");
             hostaddrp = inet_ntoa(clientaddr.sin_addr);
